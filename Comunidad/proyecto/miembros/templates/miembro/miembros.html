@@ -1,0 +1,86 @@
+{% extends 'miembro/base.html'%}
+
+{% block title%} {% endblock%}   
+
+{% block background %}{% load static %}{% static 'mie/img/musulman.jpg' %}{% endblock %}
+
+{% block headers %}
+<h1>Miembros</h1>
+{% endblock %}
+{% block content%}  
+<div class="member-section">
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="apellidos">Apellidos:</label>
+            <input type="text" id="apellidos" name="apellidos" class="form-control" required>
+        </div>
+
+        <div class="select-group">
+            <label for="nacionalidad">Nacionalidad:</label>
+            <select id="nacionalidad" name="nacionalidad" class="form-control" required>
+                <option value="" disabled selected>Selecciona una nacionalidad</option>
+                {% for n in nacionalidades %}
+                    <option value="{{ n.id }}">{{ n.nombre }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="select-group">
+            <label for="estadocivil">Estado Civil:</label>
+            <select id="estadocivil" name="estadocivil" class="form-control" required>
+                <option value="" disabled selected>Selecciona un estado civil</option>
+                {% for e in estadosciviles %}
+                    <option value="{{ e.id }}">{{ e.nombre }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="select-group">
+            <label for="genero">Género:</label>
+            <select id="genero" name="genero" class="form-control" required>
+                <option value="" disabled selected>Selecciona un género</option>
+                {% for g in generos %}
+                    <option value="{{ g.id }}">{{ g.nombre }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="id">ID:</label>
+            <input type="text" id="id" name="id" class="form-control" required>
+        </div>
+
+       <div class="form-group">
+            <label for="direccion">Dirección:</label>
+            <input type="text" id="direccion" name="direccion" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="telefono">Teléfono:</label>
+            <input type="number" id="telefono" name="telefono" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="correo">Correo:</label>
+            <input type="email" id="correo" name="correo" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="num_hijos">No de Hijos:</label>
+            <input type="number" id="num_hijos" name="num_hijos" class="form-control" required>
+        </div>
+
+        <div class="button-group">
+            <button type="submit" class="btn btn-primary agregar-button">Agregar</button>
+            <a href="{% url 'listar_miembros' %}" class="btn btn-primary listar-button">Listar</a>
+        </div>
+    </form>
+</div>
+
+{% endblock%}
