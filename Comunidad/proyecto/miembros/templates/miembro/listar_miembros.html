@@ -1,0 +1,59 @@
+{% extends 'miembro/base.html' %}
+
+{% block title %}Lista de Miembros{% endblock %}
+
+{% block background %}{% load static %}{% static 'mie/img/musulman.jpg' %}{% endblock %}
+
+{% block headers %}
+<h1>Lista Miembros</h1>
+{% endblock %}
+
+{% block content %}
+<div class="container member-section">
+    <div class="search-bar">
+        <input type="text" id="search" class="form-control" placeholder="Buscar">
+        <button type="button" class="btn btn-primary buscar-button">Buscar</button>
+    </div>
+
+    <table class="table table-bordered table-responsive">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Nacionalidad</th>
+                <th>Estado Civil</th>
+                <th>Género</th>
+                <th>ID</th>
+                <th>Dirección</th>
+                <th>Teléfono</th>
+                <th>Correo</th>
+                <th>No. Hijos</th>
+                <th class="acciones">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for miembro in miembros %}
+                <tr>
+                    <td>{{ miembro.nombre }}</td>
+                    <td>{{ miembro.apellido }}</td>
+                    <td>{{ miembro.nacionalidad.nombre }}</td>
+                    <td>{{ miembro.estadocivil.nombre }}</td>
+                    <td>{{ miembro.genero.nombre }}</td>
+                    <td>{{ miembro.di }}</td>
+                    <td>{{ miembro.direccion }}</td>
+                    <td>{{ miembro.telefono }}</td>
+                    <td>{{ miembro.correo }}</td>
+                    <td>{{ miembro.nohijos }}</td>
+                    <td class="acciones">
+                   <button type="submit" class="btn btn-primary btn-sm actualizar-button">ACTUALIZAR</button>
+                   <button type="submit" class="btn btn-primary btn-sm eliminar-button">ELIMINAR</button>
+
+ 
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
